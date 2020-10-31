@@ -59,14 +59,14 @@ $ aws ecs create-cluster --cluster-name test-ecs-cluster --region ap-northeast-2
 
 ### Step 4: Create ECS NGINX Task Definition
 
-- Create ECS Task Definition and ECS Service based on the templates in this directory.
-  - **Important** Make sure to create ECS Service by CLI using the template here. Using GUI will force you to create target groups. 
-
 ```bash
 $ aws ecs register-task-definition --cli-input-json file://test-ecs-nginx-task-def.json --region ap-northeast-2
 ```
 
 ### Step 5: Create ECS NGINX Service
+
+- Create ECS Task Definition and ECS Service based on the templates in this directory.
+  - **Important** Make sure to create ECS Service by CLI using the template here. Using GUI will force you to create target groups. Which is ok but to follow up this guide you should. 
 
 ```bash
 $ aws ecs create-service --cli-input-json file://test-ecs-nginx-service.json --region ap-northeast-2
