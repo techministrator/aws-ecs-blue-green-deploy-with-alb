@@ -1,0 +1,31 @@
+{
+    "family": "test-ecs-nginx-task-def",
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+        {
+            "name": "nginx",
+            "image": "nginx",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "entryPoint": [
+                "sh",
+                "-c"
+            ],
+            "command": [
+                "/bin/sh -c \"echo '<h1>Amazon ECS Sample App</h1>' > /usr/share/nginx/html/index.html && nginx -g 'daemon off;'\""
+            ]
+        }
+    ],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "cpu": "256",
+    "memory": "512",
+    "executionRoleArn": "arn:aws:iam::807231263819:role/ecsTaskExecutionRole"
+}

@@ -1,0 +1,12 @@
+{
+    "applicationName": "test-ecs-codedeploy-app",
+    "deploymentGroupName": "test-ecs-codedeploy-dg",
+    "revision": {
+        "revisionType": "S3",
+        "s3Location": {
+            "bucket": "test-ecs-blue-green-deployment-bucket",
+            "key": "appspec.yml",
+            "bundleType": "YAML"
+        }
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "LaunchConfigurationName": "test-ecs-asg-launch-config",
+    "ImageId": "ami-0cc0a1657e6978861",
+    "SecurityGroups": [
+        "sg-03972bfee70c70f81"
+    ],
+    "InstanceType": "t3.small",
+    "BlockDeviceMappings": [
+        {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+                "VolumeSize": 30,
+                "VolumeType": "gp2",
+                "DeleteOnTermination": true,
+                "Encrypted": false
+            }
+        }
+    ],
+    "InstanceMonitoring": {
+        "Enabled": false
+    },
+    "IamInstanceProfile": "arn:aws:iam::807231263819:instance-profile/ecsInstanceRole",
+    "AssociatePublicIpAddress": true
+}

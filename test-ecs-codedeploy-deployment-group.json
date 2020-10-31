@@ -1,0 +1,54 @@
+{
+   "applicationName": "test-ecs-codedeploy-app",
+   "deploymentGroupName": "test-ecs-codedeploy-dg",
+   "deploymentConfigName": "CodeDeployDefault.ECSAllAtOnce",
+   "deploymentStyle": {
+      "deploymentOption": "WITH_TRAFFIC_CONTROL",
+      "deploymentType": "BLUE_GREEN"
+   },
+   "autoRollbackConfiguration": {
+      "enabled": true,
+      "events": [ "DEPLOYMENT_FAILURE" ]
+   },
+   "blueGreenDeploymentConfiguration": {
+      "deploymentReadyOption": {
+         "actionOnTimeout": "CONTINUE_DEPLOYMENT",
+         "waitTimeInMinutes": 0
+      },
+      "terminateBlueInstancesOnDeploymentSuccess": {
+         "action": "TERMINATE",
+         "terminationWaitTimeInMinutes": 5
+      }
+   },
+   "loadBalancerInfo": {
+      "targetGroupPairInfoList": [
+         {
+            "targetGroups": [
+               {
+                  "name": "test-codedeploy-alb-tg-1"
+               },
+               {
+                  "name": "test-codedeploy-alb-tg-2"
+               }
+            ],
+            "prodTrafficRoute": {
+               "listenerArns": [
+                     "arn:aws:elasticloadbalancing:ap-northeast-2:807231263819:listener/app/test-codedeploy-alb/e733bec8371eba49/dd4ac6643180fb40"
+               ]
+            },
+            "testTrafficRoute": {
+                  "listenerArns": [
+                     "arn:aws:elasticloadbalancing:ap-northeast-2:807231263819:listener/app/test-codedeploy-alb/e733bec8371eba49/9804775fb116bc1f"
+                  ]
+            }
+         }
+      ]
+   },
+   "serviceRoleArn": "arn:aws:iam::807231263819:role/ecsCodeDeployRole",
+   "ecsServices": [
+         {
+            "serviceName": "test-ecs-nginx-service",
+            "clusterName": "test-ecs-cluster"
+         }
+   ]
+}

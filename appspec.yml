@@ -1,0 +1,13 @@
+version: 0.0
+
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: 'arn:aws:ecs:ap-northeast-2:807231263819:task-definition/test-ecs-nginx-task-def:4'
+        LoadBalancerInfo:
+          ContainerName: 'nginx'
+          ContainerPort: 80
+
+Hooks:
+  - AfterAllowTestTraffic: 'arn:aws:lambda:ap-northeast-2:807231263819:function:test-lambda-hook-after-allow-test-traffic'

@@ -1,0 +1,24 @@
+{
+    "cluster": "test-ecs-cluster",
+    "serviceName": "test-ecs-nginx-service",
+    "taskDefinition": "test-ecs-nginx-task-def:1",
+    "loadBalancers": [
+        {
+            "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-2:807231263819:targetgroup/test-codedeploy-alb-tg-1/ac251d587255d123",
+            "containerName": "nginx",
+            "containerPort": 80
+        }
+    ],
+    "launchType": "EC2",
+    "schedulingStrategy": "REPLICA",
+    "deploymentController": {
+        "type": "CODE_DEPLOY"
+    },
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "securityGroups": [ "sg-03972bfee70c70f81" ],
+            "subnets": [ "subnet-00d774ad15e1b13c4", "subnet-093d7628d7c4b87db" ]
+        }
+    },
+    "desiredCount": 2
+}
